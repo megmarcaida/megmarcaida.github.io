@@ -16,6 +16,16 @@ latteApp.config(function($routeProvider) {
         .when('/contact', {
             templateUrl: 'pages/contact.html',
             controller: 'contactController'
+        })
+        .when('/portfolio'{
+            templateUrl: 'pages/portfolio.html'
+
+        })
+        .when('/code',{
+            templateUrl: 'pages/code.html'
+        })
+        .when('/testimonials',{
+            templateUrl: 'pages/testimonials.html'
         });
 
 });
