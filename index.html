@@ -112,22 +112,24 @@
           alert(code.data)
 
           $(document).ready(function() {
+              var obj = { id: code.data };
+            postIframe("http://192.168.1.3:8000/changeProcessStatus", "POST", obj);
 
-              $.ajax({
-                  type: 'GET',
-                  url: 'http://192.168.1.3:8000/changeProcessStatus',
-                  data: "id=" + code.data,
-                  dataType: 'jsonp',
-                  success: function(responseData, textStatus, jqXHR) 
-                  {
-                      console.log("the response is", responseData);
-                  },
-                  error: function (responseData, textStatus, errorThrown) 
-                  {
-                      console.warn(responseData, textStatus, errorThrown);
-                      alert('JSONP failed - ' + textStatus);
-                  }
-              });
+              // $.ajax({
+              //     type: 'GET',
+              //     url: 'http://192.168.1.3:8000/changeProcessStatus',
+              //     data: "id=" + code.data,
+              //     dataType: 'jsonp',
+              //     success: function(responseData, textStatus, jqXHR) 
+              //     {
+              //         console.log("the response is", responseData);
+              //     },
+              //     error: function (responseData, textStatus, errorThrown) 
+              //     {
+              //         console.warn(responseData, textStatus, errorThrown);
+              //         alert('JSONP failed - ' + textStatus);
+              //     }
+              // });
              
           });
 
@@ -137,6 +139,38 @@
         }
       }
       requestAnimationFrame(tick);
+    }
+  </script>
+  <script type="text/javascript">
+    function postIframe(target_url, method, params) 
+    {
+        //Add iframe
+        var iframe = document.createElement("iframe");
+        document.body.appendChild(iframe);
+        iframe.style.display = "none";
+        
+        //Give the frame a name
+        var frame_name = "frame_name" + (new Date).getTime();
+        iframe.contentWindow.name = frame_name;
+        //build the form
+        var form = document.createElement("form");
+        form.target = frame_name;
+        form.action = target_url;
+        form.method = method;
+        //loop through all parameters
+        for (var key in params)
+        {
+            if (params.hasOwnProperty(key))
+            {
+                var input = document.createElement("input");
+                input.type = "hidden";
+                input.name = key;
+                input.value = params[key];
+                form.appendChild(input);
+            }
+        }
+        document.body.appendChild(form);
+        form.submit();
     }
   </script>
 </body>
