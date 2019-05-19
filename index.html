@@ -87,6 +87,23 @@
       requestAnimationFrame(tick);
     });
 
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1)); 
+                    break;
+                }    
+            }    
+        }    
+        return cookieValue;
+    } 
+
     function tick() {
       loadingMessage.innerText = "⌛ Loading video..."
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -112,7 +129,7 @@
           alert(code.data)
 
           $(document).ready(function() {
-              var obj = { id: code.data };
+              var obj = { id: code.data, _token: getCookie('csrftoken') };
             postIframe("http://192.168.1.3:8000/changeProcessStatus", "POST", obj);
 
               // $.ajax({
