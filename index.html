@@ -109,6 +109,21 @@
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
           alert(code.data)
+
+           $.ajax({
+              url: "http://192.168.1.3:8000/{{ url('changeProcessStatus') }}",
+              type: "POST",
+              data: {id:code.data},
+              success: function (data) {
+                console.log(JSON.parse(data))  
+                
+
+              },
+              error: function (data) {
+                  console.log('Error:', data);
+              }
+          });
+
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
