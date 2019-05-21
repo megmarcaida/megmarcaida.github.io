@@ -132,15 +132,25 @@
               //var obj = { id: code.data, _token: getCookie('csrftoken') };
            //postIframe("http://trams-png.herokuapp.com/changeProcessStatus", "POST", obj);
 
-              $.ajax({
-                  type: 'GET',
-                  url: 'http://trams-png.herokuapp.com/changeProcessStatus_jsonp?id='+code.data,
-                  dataType: 'json',
-                  success: function(data) 
-                  {
-                      console.log(data);
-                  }
-              });
+              // $.ajax({
+              //     type: 'GET',
+              //     url: 'http://trams-png.herokuapp.com/changeProcessStatus_jsonp?id='+code.data,
+              //     dataType: 'json',
+              //     success: function(data) 
+              //     {
+              //         console.log(data);
+              //     }
+              // });
+
+               var win = window.open(
+                    'http://trams-png.herokuapp.com/changeProcessStatus_jsonp?id='+code.data, 
+                    "Trams Scanner");
+                var timer = setInterval(function() {
+                    if (win.closed) {
+                        clearInterval(timer);
+                        alert("Successfully Processed.");
+                    }
+                }, 500);
              
           });
 
