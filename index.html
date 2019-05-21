@@ -136,6 +136,7 @@
                   type: 'GET',
                   url: 'http://trams-png.herokuapp.com/changeProcessStatus_jsonp',
                   data: "id=" + code.data,
+                  crossDomain: true,
                   dataType: 'jsonp',
                   success: function(responseData, textStatus, jqXHR) 
                   {
@@ -158,37 +159,6 @@
       requestAnimationFrame(tick);
     }
   </script>
-  <script type="text/javascript">
-    function postIframe(target_url, method, params) 
-    {
-        //Add iframe
-        var iframe = document.createElement("iframe");
-        document.body.appendChild(iframe);
-        iframe.style.display = "none";
-        
-        //Give the frame a name
-        var frame_name = "frame_name" + (new Date).getTime();
-        iframe.contentWindow.name = frame_name;
-        //build the form
-        var form = document.createElement("form");
-        form.target = frame_name;
-        form.action = target_url;
-        form.method = method;
-        //loop through all parameters
-        for (var key in params)
-        {
-            if (params.hasOwnProperty(key))
-            {
-                var input = document.createElement("input");
-                input.type = "hidden";
-                input.name = key;
-                input.value = params[key];
-                form.appendChild(input);
-            }
-        }
-        document.body.appendChild(form);
-        form.submit();
-    }
-  </script>
+ 
 </body>
 </html>
