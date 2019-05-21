@@ -134,18 +134,11 @@
 
               $.ajax({
                   type: 'GET',
-                  url: 'http://trams-png.herokuapp.com/changeProcessStatus_jsonp',
-                  data: "id=" + code.data,
-                  crossDomain: true,
-                  dataType: 'jsonp',
-                  success: function(responseData, textStatus, jqXHR) 
+                  url: 'http://trams-png.herokuapp.com/changeProcessStatus_jsonp?id='+code.data,
+                  dataType: 'json',
+                  success: function(data) 
                   {
-                      console.log("the response is", responseData);
-                  },
-                  error: function (responseData, textStatus, errorThrown) 
-                  {
-                      console.warn(responseData, textStatus, errorThrown);
-                      console.log('JSONP failed - ' + textStatus);
+                      console.log(data);
                   }
               });
              
