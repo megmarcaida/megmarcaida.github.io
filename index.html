@@ -142,15 +142,10 @@
               //     }
               // });
 
-               var win = window.open(
-                    'http://trams-png.herokuapp.com/changeProcessStatus_jsonp?id='+code.data, 
-                    "Trams Scanner");
-                var timer = setInterval(function() {
-                    if (win.closed) {
-                        clearInterval(timer);
-                        alert("Successfully Processed.");
-                    }
-                }, 500);
+               //var win = window.open('http://trams-png.herokuapp.com/changeProcessStatus_jsonp?id='+code.data, "Trams Scanner");
+               //setTimeout(function(){
+                    open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data, '_self').close();
+               //},1000);
              
           });
 
