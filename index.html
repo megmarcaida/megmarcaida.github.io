@@ -90,7 +90,7 @@
 
 
     var count = 0
-    function tick() {
+    function tick(count) {
       loadingMessage.innerText = "⌛ Loading video..."
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
         loadingMessage.hidden = true;
