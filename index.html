@@ -116,19 +116,11 @@
 
           $(document).ready(function() {
              
-               if(count==0){
-                   console.log(count)
-                   setTimeout(function(){
-                        window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
-                   },5000);
-                 count++;
-               }else{
-                return false;
-               }
-              
+               console.log(count)
                setTimeout(function(){
-                  count =0
-               },5000)
+                    window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
+               },5000);
+              
              
           });
           count++;
