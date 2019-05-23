@@ -117,9 +117,14 @@
           $(document).ready(function() {
              
                console.log(countData)
-               setTimeout(function(){
-                    window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
-               },5000);
+               if(countData==0){
+                 setTimeout(function(){
+                      window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
+                 },5000);
+                 countData++
+               }setTimeout(function(){
+                countData = 0
+               },5000)
               
              
           });
