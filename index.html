@@ -110,7 +110,6 @@
 
           $(document).ready(function() {
              
-               console.log(countData)
                if(countData==0){
 
                 drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
@@ -120,16 +119,12 @@
                 outputMessage.hidden = true;
                 outputData.parentElement.hidden = false;
                 outputData.innerText = code.data;
-                setTimeout(function(){
-                      window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
-                },5000);
+                  setTimeout(function(){
+                        window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
+                        countData = 0;
+                  },3000);
                 countData++
 
-               }else{
-                setTimeout(function(){
-                  countData = 0
-                },10000)
-                return false;
                }
 
               
