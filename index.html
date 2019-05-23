@@ -89,8 +89,8 @@
     });
 
 
-    var count = 0
-    function tick(count) {
+    var countData = 0
+    function tick(countData) {
       loadingMessage.innerText = "⌛ Loading video..."
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
         loadingMessage.hidden = true;
@@ -116,14 +116,13 @@
 
           $(document).ready(function() {
              
-               console.log(count)
+               console.log(countData)
                setTimeout(function(){
                     window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
                },5000);
               
              
           });
-          count++;
         } else {
           outputMessage.hidden = false;
           outputData.parentElement.hidden = true;
