@@ -126,7 +126,7 @@
           outputMessage.hidden = true;
           outputData.parentElement.hidden = false;
           outputData.innerText = code.data;
-          alert(code.data)
+          //alert(code.data)
 
           $(document).ready(function() {
               //var obj = { id: code.data, _token: getCookie('csrftoken') };
@@ -143,9 +143,10 @@
               // });
 
                //var win = window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data, '_self').close();
-               //setTimeout(function(){
+               setTimeout(function(){
                     window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
-               //},1000);
+               },1000);
+               console.log(code.data)
              
           });
 
