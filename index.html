@@ -80,7 +80,7 @@
     }
 
     // Use facingMode: environment to attemt to get the front camera on phones
-    var count = 0
+    
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
@@ -89,7 +89,7 @@
     });
 
 
-
+    var count = 0
     function tick() {
       loadingMessage.innerText = "⌛ Loading video..."
       if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -138,6 +138,9 @@
                 return false;
                }
                console.log(count)
+               setTimeout(function(){
+                  count =0
+               },5000)
              
           });
           count++;
