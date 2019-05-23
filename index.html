@@ -105,26 +105,33 @@
           inversionAttempts: "dontInvert",
         });
         if (code) {
-          drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
-          drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
-          drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
-          drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-          outputMessage.hidden = true;
-          outputData.parentElement.hidden = false;
-          outputData.innerText = code.data;
+          
           //alert(code.data)
 
           $(document).ready(function() {
              
                console.log(countData)
                if(countData==0){
-                 setTimeout(function(){
+
+                drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+                drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+                drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+                drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+                outputMessage.hidden = true;
+                outputData.parentElement.hidden = false;
+                outputData.innerText = code.data;
+                setTimeout(function(){
                       window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
-                 },5000);
-                 countData++
-               }setTimeout(function(){
-                countData = 0
-               },5000)
+                },5000);
+                countData++
+
+               }else{
+                setTimeout(function(){
+                  countData = 0
+                },10000)
+                return false;
+               }
+
               
              
           });
