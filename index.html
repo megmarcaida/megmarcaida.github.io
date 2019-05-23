@@ -80,29 +80,22 @@
     }
 
     // Use facingMode: environment to attemt to get the front camera on phones
+    var count = 0
     navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
       video.play();
-      requestAnimationFrame(tick);
+      if(count==0){
+        requestAnimationFrame(tick);
+        count++;
+      }
+
+      setTimeout(function(){
+        count = 0;
+      },4000);
     });
 
 
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie != '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1)); 
-                    break;
-                }    
-            }    
-        }    
-        return cookieValue;
-    } 
 
     function tick() {
       loadingMessage.innerText = "⌛ Loading video..."
