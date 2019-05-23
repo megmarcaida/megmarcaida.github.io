@@ -92,7 +92,7 @@
 
     function tick() {
       loadingMessage.innerText = "⌛ Loading video..."
-      if (video.readyState === video.HAVE_ENOUGH_DATA && count==0) {
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
         loadingMessage.hidden = true;
         canvasElement.hidden = false;
         outputContainer.hidden = false;
@@ -129,10 +129,15 @@
               // });
 
                //var win = window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data, '_self').close();
-               setTimeout(function(){
-                    window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
-               },1000);
-               console.log(code.data)
+               if(count==0){
+                 setTimeout(function(){
+                      window.open('http://192.168.1.10:8000/changeProcessStatus_jsonp?id='+code.data).close();
+                 },1000);
+                 count++;
+               }else{
+                return false;
+               }
+               console.log(count)
              
           });
           count++;
@@ -141,9 +146,6 @@
           outputData.parentElement.hidden = true;
         }
 
-        setTimeout(function(){
-          count = 0
-        },5000)
       }
       requestAnimationFrame(tick);
     }
